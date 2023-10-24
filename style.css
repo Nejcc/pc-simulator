@@ -1,0 +1,15 @@
+.terminal {
+    background-color: #777777;
+    color: lime;
+    padding: 20px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.groundPowerOn {
+    background-color: green;
+}
+
+.groundPowerOff {
+    background-color: gray;
+}

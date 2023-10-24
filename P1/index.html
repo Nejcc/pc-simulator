@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="accumulators mt-3">
+                <h3>Accumulators</h3>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody id="accumulator-table">
+                    <tr>
+                        <td>A</td>
+                        <td id="ram_0">0</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td id="ram_1">0</td>
+                    </tr>
+                    <tr>
+                        <td>LR</td>
+                        <td id="ram_2">0</td>
+                    </tr>
+                    <tr>
+                        <td>EB</td>
+                        <td id="ram_3">0</td>
+                    </tr>
+                    <tr>
+                        <td>PC</td>
+                        <td id="ram_4">0</td>
+                    </tr>
+                    <tr>
+                        <td>BB</td>
+                        <td id="ram_5">0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td id="ram_6">0</td>
+                    </tr>
+                    <tr>
+                        <td>WD</td>
+                        <td id="ram_7">0</td>
+                    </tr>
+                    <!-- Add more accumulators as needed -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cli mb-3">
+                <label for="command" class="form-label">Enter Command:</label>
+                <textarea id="command" class="form-control" rows="10" autocomplete="off">store 10, 0
+store 7, 1
+define myFunction
+store 5, 0
+store 3, 1
+loop myFunction 3
+
+
+</textarea>
+                load 0, 2
+                load 1, 3
+                add 2, 3, 4
+                store 4, 5
+                subtract 0, 1, 6
+                multiply 2, 3, 7
+                divide 2, 1, 8
+                exchange 2, 3
+                store 42, 9
+                load 5, 9
+                call 12
+                load 6, 1
+                jump 3
+                return
+                <button id="run-command" class="btn btn-primary mt-2">Run Command</button>
+                <button id="play-button" class="btn btn-success mt-2">Play</button>
+                <button id="pause-button" class="btn btn-primary mt-2">Pause</button>
+                <button id="reset-button" class="btn btn-danger mt-2">Reset</button>
+                <button id="next-button" class="btn btn-warning mt-2">Next</button>
+            </div>
+            <div class="output" id="output">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="memory">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="rom mb-3">
+                            <h3>ROM</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Data</th>
+                                </tr>
+                                </thead>
+                                <tbody id="rom-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="ram">
+                            <h3>RAM</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>type</th>
+                                    <th>Name</th>
+                                    <th>Data</th>
+                                </tr>
+                                </thead>
+                                <tbody id="ram-table"></tbody>
+                                <tbody id="ram-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Library Section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3>Command Library</h3>
+            <ul>
+                <li><strong>store &lt;data&gt;, &lt;index&gt;</strong> - Store data in ROM at the specified index.</li>
+                <li><strong>load &lt;index&gt;, &lt;accumulator&gt;</strong> - Load data from ROM to the specified accumulator.</li>
+                <li><strong>set &lt;index&gt;, &lt;value&gt;</strong> - Set the value of the specified accumulator and update ROM.</li>
+                <li><strong>add &lt;index1&gt;, &lt;index2&gt;, &lt;resultIndex&gt;</strong> - Add values in two accumulators and store the result in the specified accumulator.</li>
+                <li><strong>subtract &lt;index1&gt;, &lt;index2&gt;, &lt;resultIndex&gt;</strong> - Subtract the value of one accumulator from another and store the result in the specified accumulator.</li>
+                <li><strong>multiply &lt;index1&gt;, &lt;index2&gt;, &lt;resultIndex&gt;</strong> - Multiply values in two accumulators and store the result in the specified accumulator.</li>
+                <li><strong>divide &lt;index1&gt;, &lt;index2&gt;, &lt;resultIndex&gt;</strong> - Divide the value of one accumulator by another and store the result in the specified accumulator. (Division by zero is not allowed)</li>
+                <li><strong>exchange &lt;index1&gt;, &lt;index2&gt;</strong> - Exchange the values between two accumulators.</li>
+                <li><strong>jump &lt;index&gt;</strong> - Set the program counter to the specified index, effectively changing the execution order.</li>
+                <li><strong>call &lt;index&gt;</strong> - Save the current program counter on the stack and set the program counter to the specified index, allowing for subroutine calls.</li>
+                <li><strong>return</strong> - Pop the top value from the stack and set the program counter to that value, returning from a subroutine.</li>
+                <!-- Add more commands as needed -->
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

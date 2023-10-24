@@ -1,0 +1,96 @@
+/* Reset some default styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+.container {
+    /*max-width: 800px;*/
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* CLI input styles */
+.cli {
+    margin-bottom: 20px;
+}
+
+.cli label {
+    font-weight: bold;
+}
+
+.cli input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Output area styles */
+.output {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f7f7f7;
+    /*white-space: pre-wrap;*/
+    height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Memory section styles */
+.memory {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*margin-top: 20px;*/
+}
+
+/* ROM and RAM styles */
+.rom, .ram {
+    /*flex: 1;*/
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.rom h3, .ram h3 {
+    font-size: 18px;
+    /*margin-bottom: 10px;*/
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Accumulators section styles */
+.accumulators {
+    margin-top: 20px;
+}
+
+.accumulators h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Add any additional styling as needed */
